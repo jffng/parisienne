@@ -1,11 +1,11 @@
 /*
-Theme Name: Johannes
-Text Domain: johannes
-Version: 1.0
+Theme Name: Parisienne
+Text Domain: parisienne
+Version: 1.05
 Requires at least: 5.3
 Description: A test theme using the new WordPress block templating system.
-Author: Mel Choyce
-Author URI: https://melchoyce.design/
+Author: Jeff Ong 
+Author URI: https://jffng.com/
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,16 +82,24 @@ blockquote::after {
 /*	1. Document Setup
 /* -------------------------------------------------------------------------- */
 
+@font-face {
+	font-family: 'Pinyon Script';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: local('Pinyon Script'), local('PinyonScript'), url(https://fonts.gstatic.com/s/pinyonscript/v9/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOqTimDc.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 html {
 	font-size: 62.5%; /* 1rem = 10px */
 }
 
 body {
-	background: white;
+	background: #F3EBE8;
 	box-sizing: border-box;
-	color: #000;
-	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+	color: #141414;
+	font-family: 'Baskerville', serif;
 	font-size: 1.8rem;
 	text-align: left;
 }
@@ -155,20 +163,20 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 700;
+	font-weight: normal;
 	line-height: 1.2;
 	margin: 3.5rem 0 2rem;
 }
 
 h1,
 .heading-size-1 {
-	font-size: 3.6rem;
-	font-weight: 800;
+	font-family: 'Pinyon Script', cursive;
+	font-size: 7rem;
 }
 
 h2,
 .heading-size-2 {
-	font-size: 3.2rem;
+	font-size: 4rem;
 }
 
 h3,
@@ -260,8 +268,9 @@ address {
 hr {
 	border-style: solid;
 	border-width: 0.1rem 0 0 0;
-	border-color: #eee;
-	margin: 4rem 0;
+	border-color: #DECABF;
+	margin: 4rem auto;
+	max-width: 480px;
 }
 
 a {
@@ -286,12 +295,16 @@ blockquote {
 
 }
 
-cite {
+blockquote.wp-block-quote.is-style-large p {
+	font-size: 3.5rem;
+}
 
+cite {
+	font-style: normal;
 }
 
 blockquote cite {
-
+	font-style: normal;
 }
 
 blockquote p:last-child {
@@ -401,28 +414,51 @@ figcaption a,
 
 .alignwide {
 	margin: auto;
-	max-width: 1000px;
+	max-width: 1280px;
+}
+
+.site-border {
+	bottom: 1vw;
+	border: 1px solid #DECABF;
+	left: 1vw;
+	position: fixed;
+	right: 1vw;
+	top: 3vw;
 }
 
 
 /* Header ------------------------------------- */
 
 
-.site-header {
-	background: white;
-	border: 1px solid rgba(0,0,0,.1);
+.site-header p {
+	margin: 1em 0;
 }
 
 .site-header .wp-block-columns {
+	margin: 0 2rem;
 	margin-bottom: 0;
+	align-items: center;
 }
 
 .site-header h1 {
-	margin: 3rem 0;
+	font-family: 'Pinyon Script';
+	font-size: 7.2rem;
+	text-align: center;
+	margin: 3rem 0 0;
 }
 
 .site-header .wp-block-social-links {
 	justify-content: flex-end;
+}
+
+.wp-block-navigation a {
+	color: black;
+	font-size: 2.4rem;
+	text-decoration: none;
+}
+
+.wp-block-navigation a:hover {
+	text-decoration: underline;
 }
 
 
@@ -434,7 +470,16 @@ figcaption a,
 }
 
 .entry-content > .alignfull {
-	margin-top: -4rem;
+	/* margin-top: -4rem; */
+}
+
+.wp-block-media-text ul {
+	list-style: none;
+}
+
+.wp-block-media-text li {
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
 }
 
 
@@ -443,7 +488,6 @@ figcaption a,
 
 .site-footer {
 	padding: 3rem;
-	background-color: #fafafa;
 }
 
 .site-footer .wp-block-group {
