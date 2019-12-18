@@ -38,13 +38,13 @@ if ( ! function_exists( 'parisienne_theme_support' ) ) :
 			// Starter pages to include
 			'posts' => [
 				'home' => [
-					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/cover.html')
+					'post_content' => '<!-- wp:template-part {"slug":"cover","theme":"parisienne"} -->'
 				],
 				'about' => [
-					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/image-quote.html')
+					'post_content' => '<!-- wp:template-part {"slug":"image-quote","theme":"parisienne"} -->'
 				],
 				'contact' => [
-					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/contact.html')
+					'post_content' => '<!-- wp:template-part {"slug":"contact","theme":"parisienne"} -->'
 				]
 			]
 		]);
