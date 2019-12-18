@@ -27,6 +27,27 @@ if ( ! function_exists( 'parisienne_theme_support' ) ) :
 		// Alignwide and alignfull classes in the block editor
 		add_theme_support( 'align-wide' );
 
+		// Starter content
+		add_theme_support('starter-content', [
+			// Static front page set to Home, posts page set to Blog
+			'options' => [
+				'show_on_front' => 'page',
+				'page_on_front' => '{{home}}',
+				'page_for_posts' => '{{blog}}',
+			],
+			// Starter pages to include
+			'posts' => [
+				'home' => [
+					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/cover.html')
+				],
+				'about' => [
+					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/image-quote.html')
+				],
+				'contact' => [
+					'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/contact.html')
+				]
+			]
+		]);
 
     }
     add_action( 'after_setup_theme', 'parisienne_theme_support' );
@@ -80,24 +101,4 @@ function parisienne_block_editor_settings() {
 add_action( 'after_setup_theme', 'parisienne_block_editor_settings' );
 
 add_action('after_setup_theme', function () {
-    add_theme_support('starter-content', [
-        // Static front page set to Home, posts page set to Blog
-        'options' => [
-            'show_on_front' => 'page',
-            'page_on_front' => '{{home}}',
-            'page_for_posts' => '{{blog}}',
-        ],
-        // Starter pages to include
-        'posts' => [
-            'home' => [
-				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/cover.html')
-			],
-            'about' => [
-				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/image-quote.html')
-			],
-            'contact' => [
-				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/contact.html')
-			]
-        ]
-    ]);
 });
