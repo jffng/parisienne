@@ -1,7 +1,7 @@
 <?php
 
-if ( ! function_exists( 'johannes_theme_support' ) ) :
-    function johannes_theme_support()  {
+if ( ! function_exists( 'parisienne_theme_support' ) ) :
+    function parisienne_theme_support()  {
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -29,21 +29,21 @@ if ( ! function_exists( 'johannes_theme_support' ) ) :
 
 
     }
-    add_action( 'after_setup_theme', 'johannes_theme_support' );
+    add_action( 'after_setup_theme', 'parisienne_theme_support' );
 endif;
 
 /**
  * Register and Enqueue Styles.
  */
-function johannes_register_styles() {
+function parisienne_register_styles() {
 
 	$theme_version = wp_get_theme()->get( 'Version' );
 
-	wp_enqueue_style( 'johannes-style', get_stylesheet_uri(), array(), $theme_version );
+	wp_enqueue_style( 'parisienne-style', get_stylesheet_uri(), array(), $theme_version );
 
 }
 
-add_action( 'wp_enqueue_scripts', 'johannes_register_styles' );
+add_action( 'wp_enqueue_scripts', 'parisienne_register_styles' );
 
 
 /**
@@ -51,30 +51,53 @@ add_action( 'wp_enqueue_scripts', 'johannes_register_styles' );
  * Add custom colors to the block editor.
  */
 
-function johannes_block_editor_settings() {
+function parisienne_block_editor_settings() {
 
 	// Editor Color Palette
 	add_theme_support( 'editor-color-palette', array(
 		array(
-			'name'  => __( 'Blue', 'johannes' ),
+			'name'  => __( 'Blue', 'parisienne' ),
 			'slug'  => 'blue',
 			'color'	=> '#59BACC',
 		),
 		array(
-			'name'  => __( 'Green', 'johannes' ),
+			'name'  => __( 'Green', 'parisienne' ),
 			'slug'  => 'green',
 			'color' => '#58AD69',
 		),
 		array(
-			'name'  => __( 'Orange', 'johannes' ),
+			'name'  => __( 'Orange', 'parisienne' ),
 			'slug'  => 'orange',
 			'color' => '#FFBC49',
 		),
 		array(
-			'name'	=> __( 'Red', 'johannes' ),
+			'name'	=> __( 'Red', 'parisienne' ),
 			'slug'	=> 'red',
 			'color'	=> '#E2574C',
 		),
 	) );
 }
-add_action( 'after_setup_theme', 'johannes_block_editor_settings' );
+add_action( 'after_setup_theme', 'parisienne_block_editor_settings' );
+
+add_action('after_setup_theme', function () {
+    add_theme_support('starter-content', [
+        // Static front page set to Home, posts page set to Blog
+        'options' => [
+            'show_on_front' => 'page',
+            'page_on_front' => '{{home}}',
+            'page_for_posts' => '{{blog}}',
+        ],
+        // Starter pages to include
+        'posts' => [
+            'home' => [
+				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/cover.html')
+			],
+            'about' => [
+				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/image-quote.html')
+			],
+            'contact' => [
+				'post_content' => file_get_contents(get_template_directory_uri() . 'block-template-parts/contact.html')
+			]
+        ]
+    ]);
+});
